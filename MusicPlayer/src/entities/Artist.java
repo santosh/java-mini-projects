@@ -29,4 +29,8 @@ public class Artist {
     public List<Song> getReleasedSongs() {
         return releasedSongs;
     }
+
+    public void releaseSong(Song song) {
+        releasedSongs.add(song);
+    }
 }

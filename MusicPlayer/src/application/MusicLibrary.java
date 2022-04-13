@@ -97,7 +97,7 @@ public class MusicLibrary {
 
     public void printAllArtists() {
         for (int i = 0; i < artists.size(); i++) {
-            System.out.println(artists.get(i).getName());
+            System.out.println(artists.get(i).getArtistId() + ": " + artists.get(i).getName());
         }
     }
 
@@ -112,5 +112,15 @@ public class MusicLibrary {
         Artist newArtist = new Artist(firstName, lastName);
         artists.put(newArtist.getArtistId(), newArtist);
         return newArtist;
+    }
+
+    public void addSong(int artistId, String title, String genre, int releaseYear, String language) throws Exception {
+        if (!artists.containsKey(artistId)) {
+            throw new Exception("Artist does not exist");
+        }
+
+        Song newSong = new Song(artistId, title, genre, releaseYear, language);
+        songs.put(newSong.getSongId(), newSong);
+        artists.get(artistId).releaseSong(newSong);
     }
 }
