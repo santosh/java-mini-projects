@@ -4,6 +4,7 @@ import entities.Artist;
 import entities.Song;
 import entities.User;
 
+import java.net.UnknownServiceException;
 import java.util.*;
 
 public class MusicLibrary {
@@ -82,4 +83,34 @@ public class MusicLibrary {
         }
     }
 
+    public void getSongsByArtist(int artistId) throws Exception {
+        if (!artists.containsKey(artistId)) {
+            throw new Exception("Artist is invalid");
+        }
+
+        List<Song> artistSongs = artists.get(artistId).getReleasedSongs();
+
+        for (int i = 0; i < artistSongs.size(); i++) {
+            System.out.println(artistSongs.get(i).getTitle());
+        }
+    }
+
+    public void printAllArtists() {
+        for (int i = 0; i < artists.size(); i++) {
+            System.out.println(artists.get(i).getName());
+        }
+    }
+
+    public User registerUser(String firstName, String lastName, String email, String phone,
+                             String city, String locality, String state, int pinCode) {
+        User newUser = new User(firstName, lastName, new User.Contact(email, phone), new User.Address(city, locality, state, pinCode));
+        users.put(newUser.getUserId(), newUser);
+        return newUser;
+    }
+
+    public Artist registerArtist(String firstName, String lastName) {
+        Artist newArtist = new Artist(firstName, lastName);
+        artists.put(newArtist.getArtistId(), newArtist);
+        return newArtist;
+    }
 }
