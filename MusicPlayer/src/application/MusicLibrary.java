@@ -96,8 +96,10 @@ public class MusicLibrary {
     }
 
     public void printAllArtists() {
-        for (int i = 0; i < artists.size(); i++) {
-            System.out.println(artists.get(i).getArtistId() + ": " + artists.get(i).getName());
+        Set<Integer> artistIds = artists.keySet();
+
+        for (Integer artistId: artistIds) {
+            System.out.println(artistId + ": " + artists.get(artistId).getName());
         }
     }
 
