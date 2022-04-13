@@ -101,7 +101,7 @@ public class Driver {
         releaseSongs(sc);
 
         String addAgain;
-        int userId, artistI, songId;
+        int userId, artistId, songId;
 
         do {
             try {
@@ -115,16 +115,42 @@ public class Driver {
 
                 switch (choice) {
                     case 1:
-                        System.out.println("Playing a song");
+                        // userId and songId is required
+                        try {
+                            System.out.println("Please enter userId: ");
+                            userId = sc.nextInt();
+                            System.out.println("Please enter songId: ");
+                            songId = sc.nextInt();
+                            app.playSong(songId, userId);
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
                         break;
                     case 2:
-                        System.out.println("Getting top 10 songs overall");
+                        // nothing is required
+                        app.getTop10Songs();
                         break;
                     case 3:
-                        System.out.println("Getting top 10 songs for a user");
+                        // userId is required
+                        try {
+                            System.out.println("Please enter userId: ");
+                            userId = sc.nextInt();
+                            app.getTop10SongsForUser(userId);
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
                         break;
                     case 4:
-                        System.out.println("Get all songs of an artist");
+                        // artistId is required
+                        try {
+                            System.out.println("Please select an artist (enter number only): ");
+                            app.printAllArtists();
+                            System.out.println("Please enter artistId");
+                            artistId = sc.nextInt();
+                            app.getSongsByArtist(artistId);
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
                         break;
                     case 5:
                         System.out.println("invalid choice");
