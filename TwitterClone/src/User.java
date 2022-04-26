@@ -9,9 +9,10 @@ public class User {
     Tweet[] hiddenTweets;
 
     private int userId;
-    public static int counter = 0;
 
-    public User(String username) {
+
+    public User(int id, String username) {
+        this.userId = id;
         this.userName = username;
 
         this.followers = new User[100];
@@ -20,8 +21,5 @@ public class User {
 
         this.myTweets = new Tweet[500];
         this.hiddenTweets = new Tweet[500];
-
-        this.userId = counter;
-        counter++;
     }
 }
