@@ -12,17 +12,25 @@ public class Main {
         do {
             System.out.println("Please choose your option: ");
             System.out.println("1. Create a new user");
+            System.out.println("2. Post a tweet");
             System.out.println("Or press anything else to quit...");
 
             option = sc.nextInt();
             String username;
+            String msg;
 
             switch (option) {
                 case 1:
-                    System.out.println("Please enter a username of your choice");
+                    System.out.print("Please enter a username of your choice: ");
                     username = sc.nextLine();
                     app.createNewUser(username);
                     break;
+                case 2:
+                    System.out.print("Please enter a username: ");
+                    username = sc.nextLine();
+                    System.out.print("Please enter the tweet: ");
+                    msg = sc.nextLine();
+                    app.postTweet(username, msg);
                 default:
                     System.out.println("Thank you for using TwitterCLone");
             }

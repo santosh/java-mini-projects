@@ -33,8 +33,40 @@ public class TwitterClone {
             maxUserId++;
             User user = new User(maxUserId, userName);
             allUsers[maxUserId] = user;
+        }
+    }
 
+    public void postTweet(String username, String tweet) {
+        /*
+        1. name validation
+        2. limits of tweet
+        3. msg validation
+        4. handle tweetId
+        5. create tweet object
+        6. add to allTweets
+        7. Add to myTweets of User
+         */
+        if (maxTweetId == 999) {
+            System.out.println("Sorry, limit exceeded. Can't post a new tweet now..");
+        } else if (tweet.equals("")) {
+            System.out.println("Tweet is blank.");
+        } else {
+            User owner = getUser(username);
+            if (owner == null) {
+                System.out.println("User not found");
+            } else {
+                // Register tweet
+                maxTweetId++;
+                Tweet t = new Tweet(maxTweetId, tweet, owner);
+                allTweets[maxTweetId] = t;
 
+                for (int i = 0; i < 499; i++) {
+                    if (owner.myTweets[i] == null) {
+                        owner.myTweets[i] = t;
+                        break;
+                    }
+                }
+            }
         }
     }
 
