@@ -78,4 +78,19 @@ public class TwitterClone {
         }
         return null;
     }
+
+    public void getHomepage(String username) {
+        User owner = getUser(username);
+        if (owner == null) {
+            System.out.println("User not found");
+        } else {
+            System.out.println("---------- Home Page -----------");
+            for (Tweet t : owner.myTweets) {
+                if (!t.isDeleted()) {
+                    System.out.println(t.getMessage());
+                }
+            }
+            System.out.println("-------- End of Home Page ---------");
+        }
+    }
 }

@@ -10,4 +10,12 @@ public class Tweet {
         this.owner = owner;
         this.isDeleted = false;
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
 }
