@@ -11,8 +11,16 @@ public class Tweet {
         this.isDeleted = false;
     }
 
+    public User getOwner() {
+        return owner;
+    }
+
     public String getMessage() {
         return message;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
 
     public int getTweetId() {

@@ -71,9 +71,22 @@ public class TwitterClone {
     }
 
     private User getUser(String username) {
-        for (User u : allUsers) {
-            if (Objects.equals(u.userName, username)) {
-                return u;
+        for (int i = 0; i <= 999; i++) {
+            if (allUsers[i] == null) {
+                break;
+            } else if (username.equals(allUsers[i].userName)) {
+                return allUsers[i];
+            }
+        }
+        return null;
+    }
+
+    private Tweet getTweet(int id) {
+        for (int i = 0; i <= 999; i++) {
+            if (allTweets[i] == null) {
+                break;
+            } else if (id == allTweets[i].getTweetId()) {
+                return allTweets[i];
             }
         }
         return null;
@@ -142,6 +155,24 @@ public class TwitterClone {
                     }
                 }
             }
+        }
+    }
+
+    public void deleteTweet(int tweetIdToDelete, String username) {
+        User owner = getUser(username);
+        Tweet tweet = getTweet(tweetIdToDelete);
+
+        if (owner == null) {
+            System.out.println("The user name is invalid");
+        } else if (tweet == null) {
+            System.out.println("The tweetId is invalid");
+        } else if (tweet.isDeleted()) {
+            System.out.println("The tweet is already deleted");
+        } else if (tweet.getOwner().userId != owner.userId) {
+            System.out.println("The user name is invalid");
+        } else {
+            tweet.setDeleted(true);
+            System.out.println("This tweet is deleted...");
         }
     }
 }
