@@ -87,7 +87,7 @@ public class TwitterClone {
             System.out.println("---------- Home Page -----------");
             for (Tweet t : owner.myTweets) {
                 if (!t.isDeleted()) {
-                    System.out.println(t.getMessage());
+                    System.out.println(t.getTweetId() + ": " + t.getMessage());
                 }
             }
             System.out.println("-------- End of Home Page ---------");

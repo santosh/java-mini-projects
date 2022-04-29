@@ -15,6 +15,10 @@ public class Tweet {
         return message;
     }
 
+    public int getTweetId() {
+        return tweetId;
+    }
+
     public boolean isDeleted() {
         return isDeleted;
     }
