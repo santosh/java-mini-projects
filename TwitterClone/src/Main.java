@@ -14,6 +14,7 @@ public class Main {
             System.out.println("1. Create a new user");
             System.out.println("2. Post a tweet");
             System.out.println("3. Go to home page");
+            System.out.println("4. Request to follow a user");
             System.out.println("Or press anything else to quit...");
 
             option = sc.nextInt();
@@ -36,6 +37,12 @@ public class Main {
                     System.out.print("Please enter a username: ");
                     username = sc.nextLine();
                     app.getHomepage(username);
+                case 4:
+                    System.out.print("Please enter your username: ");
+                    username = sc.nextLine();
+                    System.out.print("Please enter whom you want to follow: ");
+                    String toBeFollowed = sc.nextLine();
+                    app.followUser(username, toBeFollowed);
                 default:
                     System.out.println("Thank you for using TwitterCLone");
             }

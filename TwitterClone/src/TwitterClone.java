@@ -17,11 +17,11 @@ public class TwitterClone {
 
     public void createNewUser(String userName) {
         /*
-        TODO: Assign a unique id
-        TODO: Check if limits have exceeded
-        TODO: Check if userID already exists
-        TODO: Create a new User object
-        TODO: Add to allUsers array
+        1. Assign a unique id
+        2. Check if limits have exceeded
+        3. Check if userID already exists
+        4. Create a new User object
+        5. Add to allUsers array
          */
         if (maxUserId == 999) {
             System.out.println("Sorry, limit exceeded. Can't onboard a new user now..");
@@ -91,6 +91,57 @@ public class TwitterClone {
                 }
             }
             System.out.println("-------- End of Home Page ---------");
+        }
+    }
+
+    public void followUser(String username, String toBeFollowed) {
+        /*
+        1. Verify if both name exist
+        2. Verify if both name are not same
+        3. Verify if follower limit has not reached
+        4. Add to followReq array
+        5.
+         */
+        User follower = getUser(username);
+        User leader = getUser(toBeFollowed);
+
+        if (username.equals(toBeFollowed)) {
+            System.out.println("You can't follow yourself!");
+        } else if (follower == null) {
+            System.out.println("Username not valid or not exist");
+        } else if (toBeFollowed == null) {
+            System.out.println("Username not valid or not exist");
+        } else {
+            boolean isEmptySpace = false;
+            for (int i = 0; i < 100; i++) {
+                if (leader.followReqs[i] == null) {
+                    isEmptySpace = true;
+                    break;
+                }
+            }
+
+            if (isEmptySpace == false) {
+                System.out.println("Follow request limit reached.");
+            } else {
+                boolean isAlreadyRequested = false;
+                for (int i = 0; i < 100; i++) {
+                    if (leader.followReqs[i].userId == follower.userId) {
+                        isAlreadyRequested = true;
+                        break;
+                    }
+                }
+
+                if (isAlreadyRequested == true) {
+                    System.out.println("User already followed");
+                } else {
+                    for (int i = 0; i < 100; i++) {
+                        if (leader.followReqs[i] == null) {
+                            leader.followReqs[i] = follower;
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 }
